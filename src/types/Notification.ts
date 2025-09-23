@@ -1,4 +1,6 @@
-export type Notification = {
+export type NotificationType = "success" | "error" | "info";
+
+export type NotificationData = {
   message: string;
-  type: string;
+  type: NotificationType;
 };

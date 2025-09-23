@@ -1,28 +1,57 @@
-import { createContext, useContext, useState } from "react";
-import type { Notification } from "../types/Notification";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+} from "react";
+import type { NotificationData, NotificationType } from "../types/Notification";
 
 type NotificationContextType = {
-  notifications: Notification[];
-  addNotification: (Notification: Notification) => void;
+  notification: NotificationData | null;
+  showNotification: (message: string, type?: NotificationType) => void;
+  clearNotification: () => void;
 };
 
-export const NotificationContext = createContext<
-  NotificationContextType | undefined
->(undefined);
+export const NotificationContext = createContext<NotificationContextType>({
+  notification: null,
+  showNotification: () => {},
+  clearNotification: () => {},
+});
 
 export function NotificationProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notification, setNotification] = useState<NotificationData | null>(
+    null
+  );
 
-  const addNotification = (Notification: Notification) => {
-    setNotifications((prev) => [...prev, Notification]);
-  };
+  const showNotification = useCallback(
+    (message: string, type: NotificationType = "info") => {
+      setNotification({ message, type });
+    },
+    []
+  );
+
+  const clearNotification = useCallback(() => {
+    setNotification(null);
+  }, []);
+
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => {
+        clearNotification();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification, clearNotification]);
 
   return (
-    <NotificationContext.Provider value={{ notifications, addNotification }}>
+    <NotificationContext.Provider
+      value={{ notification, showNotification, clearNotification }}
+    >
       {children}
     </NotificationContext.Provider>
   );
