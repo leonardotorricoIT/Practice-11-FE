@@ -1,6 +1,8 @@
-export type NotificationType = "success" | "error" | "info";
+export type Type = "success" | "error" | "info";
 
-export type NotificationData = {
+export interface NotificationData {
+  id: number;
   message: string;
-  type: NotificationType;
-};
+  type: Type;
+  duration?: number;
+}

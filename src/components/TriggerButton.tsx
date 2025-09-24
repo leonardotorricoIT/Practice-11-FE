@@ -2,7 +2,6 @@ import { useNotifications } from "../context/NotificationContext";
 
 export default function TriggerButton() {
   const { showNotification } = useNotifications();
-
   return (
     <button
       onClick={() => showNotification("Item saved successfully!", "success")}
