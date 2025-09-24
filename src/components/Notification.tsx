@@ -11,16 +11,16 @@ export default function Notification() {
 
   return (
     <div className="fixed top-4 right-4 flex flex-col gap-3 ">
-      {notifications.map((n) => (
+      {notifications.map((Notification) => (
         <div
-          key={n.id}
+          key={Notification.id}
           className={`px-4 py-2 rounded  flex items-center justify-between min-w-[200px] border-black border-2 shadow-[8px_8px_0px_0px_#000] ${
-            typeStyles[n.type] || typeStyles.info
+            typeStyles[Notification.type] || typeStyles.info
           }`}
         >
-          <span>{n.message}</span>
+          <span>{Notification.message}</span>
           <button
-            onClick={() => clearNotification(n.id)}
+            onClick={() => clearNotification(Notification.id)}
             className="ml-3 font-bold text-lg leading-none"
           >
             &times;
