@@ -17,7 +17,7 @@ export default function CustomNotificationForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row items-center gap-3 bg-gray-100 p-4 rounded shadow"
+      className="flex flex-col sm:flex-row items-center gap-3 bg-gray-100 p-4 rounded  border-black border-2 shadow-[8px_8px_0px_0px_#000]"
     >
       <input
         type="text"
@@ -37,10 +37,7 @@ export default function CustomNotificationForm() {
         <option value="error">Error</option>
       </select>
 
-      <button
-        type="submit"
-        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-      >
+      <button type="submit" className="bg-retro-blue button-brutalist">
         Show Notification
       </button>
     </form>

@@ -5,10 +5,10 @@ export default function TriggerButton2() {
 
   return (
     <button
-      onClick={() => showNotification("Error occurred in navbar!", "error")}
-      className="px-4 py-2 bg-red-600 text-white rounded"
+      onClick={() => showNotification("Error in trigger button 2", "error")}
+      className="bg-retro-pink button-brutalist"
     >
-      Trigger Notification (Navbar)
+      Trigger button 2
     </button>
   );
 }
